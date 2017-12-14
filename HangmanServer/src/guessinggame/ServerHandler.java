@@ -91,7 +91,7 @@ public class ServerHandler implements Runnable {
         }
         failedAttemptCounter = 10;
 
-        result = "uncompleted" + "," + String.valueOf(template) + "," + String.valueOf(failedAttemptCounter);
+        result = "uncompleted" + "," + String.valueOf(template) + "," + String.valueOf(failedAttemptCounter) + "," + answer;
         sendReply(result);
     }
 
