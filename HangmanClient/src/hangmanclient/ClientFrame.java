@@ -16,6 +16,7 @@ public class ClientFrame extends javax.swing.JFrame
 {
 
     private Client client;
+    private String answer;
 
     /**
      * Creates new form ClientFrame
@@ -270,6 +271,7 @@ public class ClientFrame extends javax.swing.JFrame
                         txtWord.setText(msgList[1]);
                         txtStep.setText(msgList[2]);
                         txtGuessed.setText("");
+                        txtGuessed.grabFocus();
 
                 }
 
@@ -294,6 +296,7 @@ public class ClientFrame extends javax.swing.JFrame
                 temp = str.split(",");
                 txtWord.setText(temp[1]);
                 txtStep.setText(temp[2]);
+                answer = temp[3];
                 btnStartNewGame.setEnabled(false);
             }
         }).start();
@@ -391,7 +394,9 @@ public class ClientFrame extends javax.swing.JFrame
         {
             public void run()
             {
-                new ClientFrame().setVisible(true);
+                ClientFrame cf = new ClientFrame();
+               cf.setLocationRelativeTo(null);
+               cf.setVisible(true);
             }
         });
     }
