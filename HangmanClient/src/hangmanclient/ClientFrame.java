@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
 public class ClientFrame extends javax.swing.JFrame
 {
 
-    private Client client;
-    private String answer;
+static Client client;
 
     /**
      * Creates new form ClientFrame
@@ -33,8 +32,7 @@ public class ClientFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         txtIP = new javax.swing.JTextField();
@@ -48,6 +46,387 @@ public class ClientFrame extends javax.swing.JFrame
         btnStartNewGame = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtWord = new javax.swing.JTextField();
+        txtScore = new javax.swing.JTextField();
+        txtStep = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        jLabel1.setText("IP: ");
+
+        txtIP.setText("localhost");
+
+        jLabel2.setText("Port: ");
+
+        txtPort.setText("4444");
+
+        btnConnect.setText("Connect");
+        btnConnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConnectActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Input a letter or a word: ");
+
+        txtGuessed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtGuessedKeyPressed(evt);
+            }
+        });
+
+        btnGuess.setText("Guess");
+        btnGuess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuessActionPerformed(evt);
+            }
+        });
+
+        btnStartNewGame.setText("Start a new game");
+        btnStartNewGame.setEnabled(false);
+        btnStartNewGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartNewGameActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Score: ");
+
+        jLabel5.setText("Steps:");
+
+        jLabel6.setText("The word: ");
+
+        txtWord.setEditable(false);
+        txtWord.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+
+        txtScore.setEditable(false);
+        txtScore.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+
+        txtStep.setEditable(false);
+        txtStep.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+
+        jButton1.setText("multiplayer game");
+        jButton1.setEnabled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtScore, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtStep, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtGuessed)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnGuess, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtWord, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(btnStartNewGame)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton1))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtIP, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(btnConnect))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(15, 15, 15))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConnect))
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnStartNewGame)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtGuessed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuess))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(txtScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConnectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConnectActionPerformed
+    {//GEN-HEADEREND:event_btnConnectActionPerformed
+ new Thread( new Runnable() {
+            @Override
+            public void run()
+            {
+                btnStartNewGame.setEnabled(true);
+                txtScore.setText("0");
+
+                String ip = txtIP.getText();
+                int port = Integer.parseInt(txtPort.getText());
+
+                client = new Client();
+                client.ConnectServer(ip, port); // connect to the server
+
+                btnConnect.setEnabled(false); }  }
+).start();
+    }//GEN-LAST:event_btnConnectActionPerformed
+
+    private void btnGuessActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnGuessActionPerformed
+    {//GEN-HEADEREND:event_btnGuessActionPerformed
+        // TODO add your handling code here:
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                String guessed = txtGuessed.getText();
+                String msg = client.SendGuess(guessed);
+                String[] msgList = msg.split(",");
+                switch (msgList[0])
+                {
+                    case "win":
+                        txtWord.setText(msgList[1]);
+                        txtScore.setText(msgList[2]);
+                        btnGuess.setEnabled(false);
+                        btnStartNewGame.setEnabled(true);
+                        txtGuessed.setText("");
+                        JOptionPane.showMessageDialog(btnConnect, "You win!");
+                        break;
+                    case "loose":
+                        txtScore.setText(msgList[1]);
+                        btnGuess.setEnabled(false);
+                        btnStartNewGame.setEnabled(true);
+                        txtGuessed.setText("");
+                        JOptionPane.showMessageDialog(btnConnect, "You loose!");
+                    case "uncompleted":
+                        txtWord.setText(msgList[1]);
+                        txtStep.setText(msgList[2]);
+                        txtGuessed.setText("");
+
+                }
+
+            }
+
+        }).start();
+    }//GEN-LAST:event_btnGuessActionPerformed
+
+
+    private void btnStartNewGameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStartNewGameActionPerformed
+    {//GEN-HEADEREND:event_btnStartNewGameActionPerformed
+        // TODO add your handling code here:
+     new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                jButton1.setEnabled(true);//*
+                btnGuess.setEnabled(true);
+                String temp[];
+                String str;
+                str = client.StartNewGame();
+                temp = str.split(",");
+                txtWord.setText(temp[1]);
+                txtStep.setText(temp[2]);
+                btnStartNewGame.setEnabled(false);
+            }
+        }).start();
+
+    }//GEN-LAST:event_btnStartNewGameActionPerformed
+
+    private void txtGuessedKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtGuessedKeyPressed
+    {//GEN-HEADEREND:event_txtGuessedKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            new Thread(new Runnable()
+            {
+
+                @Override
+                public void run()
+                {
+
+                    String guessed = txtGuessed.getText();
+                    String msg = client.SendGuess(guessed);
+                    String[] msgList = msg.split(",");
+                    switch (msgList[0])
+                    {
+                        case "win":
+                            txtWord.setText(msgList[1]);
+                            txtScore.setText(msgList[2]);
+                            btnGuess.setEnabled(false);
+                            btnStartNewGame.setEnabled(true);
+                            txtGuessed.setText("");
+                            JOptionPane.showMessageDialog(btnConnect, "You win!");
+                            break;
+                        case "loose":
+                            txtScore.setText(msgList[1]);
+                            btnGuess.setEnabled(false);
+                            btnStartNewGame.setEnabled(true);
+                            txtGuessed.setText("");
+                            JOptionPane.showMessageDialog(btnConnect, "You loose!");
+                        case "uncompleted":
+                            txtWord.setText(msgList[1]);
+                            txtStep.setText(msgList[2]);
+                            txtGuessed.setText("");
+                    }
+
+                }
+
+            }).start();
+        }
+
+
+    }//GEN-LAST:event_txtGuessedKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
+    {//GEN-HEADEREND:event_formWindowClosing
+        // TODO add your handling code here:
+        client.Disconnect();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+ClientFrame1 c2=new ClientFrame1();
+c2.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[])
+    {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex)
+        {
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex)
+        {
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+             
+                new ClientFrame().setVisible(true);
+                
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConnect;
+    private javax.swing.JButton btnGuess;
+    protected javax.swing.JButton btnStartNewGame;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField txtGuessed;
+    private javax.swing.JTextField txtIP;
+    private javax.swing.JTextField txtPort;
+    private javax.swing.JTextField txtScore;
+    private javax.swing.JTextField txtStep;
+    private javax.swing.JTextField txtWord;
+    // End of variables declaration//GEN-END:variables
+}
+
         jLabel6 = new javax.swing.JLabel();
         txtWord = new javax.swing.JTextField();
         txtScore = new javax.swing.JTextField();
