@@ -24,6 +24,7 @@ public class ServerHandler implements Runnable {
     private int failedAttemptCounter;
     private int scoreCounter = 0;//全局变量，整个过程中不再初始化
     private char[] template;
+    private StringBuilder alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
 
     ServerHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -54,6 +55,9 @@ public class ServerHandler implements Runnable {
                     in.close();
                     out.close();
                     break;
+                }else if (msg.equals("*hint")) {
+                    String reply = createHint();
+                    sendReply(reply);
                 } //msg is guess for the answer
                 else {
                     String reply = evaluateGuess(msg);
@@ -132,6 +136,30 @@ public class ServerHandler implements Runnable {
         return str;
     }
 
+    String createHint() throws IOException {
+        char[] answerLetters = answer.toCharArray();
+        String result = null;
+        outerloop:
+        for (int i = 0; i < alphabet.length(); i++) {
+            for(int j = 0; j < answer.length(); j++){
+                if (alphabet.charAt(i) == answerLetters[j]) {
+                template[j] = alphabet.charAt(i);
+                alphabet.deleteCharAt(i);
+                break outerloop;
+                }
+            }
+        }
+        result = String.valueOf(template);
+        if (result.equals(answer)) {
+            scoreCounter += 1;
+            result = "win" + "," + answer + "," + String.valueOf(scoreCounter);
+        } else {
+            result = "uncompleted" + "," + String.valueOf(template) + "," + String.valueOf(failedAttemptCounter);
+        }    
+        
+        return result;
+    }
+    
     String evaluateGuess(String guess) throws IOException {
         String result = null;
 
@@ -154,6 +182,8 @@ public class ServerHandler implements Runnable {
             //guess letter is included in answer
             if (answer.indexOf(guess) != -1) {
                 char guessLetter = guess.charAt(0);
+                if(alphabet.indexOf(String.valueOf(guessLetter)) != -1)
+                    alphabet.deleteCharAt(alphabet.indexOf(String.valueOf(guessLetter)));
                 char[] answerLetters = answer.toCharArray();
                 for (int i = 0; i < answer.length(); i++) {
                     if (guessLetter == answerLetters[i]) {
