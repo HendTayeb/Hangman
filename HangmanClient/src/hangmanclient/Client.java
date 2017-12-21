@@ -25,9 +25,6 @@ public class Client
     private DataInputStream in;  
     private DataOutputStream out;
     private Socket clientSocket;
-    private ServerSocket serverSocket;
-    
-    private String word, msg;
     
     
     public void ConnectServer(String ip, int port) //connect to server
@@ -90,6 +87,29 @@ public class Client
             ex.printStackTrace();
         }
         return guessReply;
+    }
+    
+    public String getHint()
+    {
+        String hintReply = "";
+        try
+        {
+            String hintComm = "*hint";
+            byte[] toServer = hintComm.getBytes();
+            out.write(toServer, 0, toServer.length);
+            
+            //out.writeUTF("*start");
+            byte[] fromServer = new byte[256];
+            int n;
+            n = in.read(fromServer, 0, 256);
+            hintReply = new String(fromServer);
+            hintReply = hintReply.substring(0, n);
+        } 
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        return hintReply;
     }
     
     public void Disconnect()
