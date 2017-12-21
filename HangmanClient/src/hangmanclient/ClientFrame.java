@@ -273,7 +273,7 @@ int hintCounter = 2;
                         txtWord.setText(msgList[1]);
                         txtStep.setText(msgList[2]);
                         txtGuessed.setText("");
-                        txtGuessed.getCursor();
+                        txtGuessed.grabFocus();
 
                 }
 
@@ -345,7 +345,7 @@ int hintCounter = 2;
                             txtWord.setText(msgList[1]);
                         txtStep.setText(msgList[2]);
                             txtGuessed.setText("");
-                            txtGuessed.getCursor();
+                            txtGuessed.grabFocus();
                     }
 
                 }
@@ -392,7 +392,7 @@ int hintCounter = 2;
                             txtWord.setText(msgList[1]);
                         txtStep.setText(msgList[2]);
                             txtGuessed.setText("");
-                            txtGuessed.getCursor();
+                            txtGuessed.grabFocus();
                     }
         if(hintCounter == 0)
             btnHint.setEnabled(false);
